@@ -35,7 +35,8 @@ module.exports = {
             .setDescription(explanation)
             .addFields(
                 { name: '**Abbreviation**', value: abb }
-            );
+            )
+            .setColor(0x);
 
         interaction.reply({ embeds: [techEmbed] });
     }
