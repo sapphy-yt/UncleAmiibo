@@ -28,7 +28,16 @@ module.exports = {
         if (tech === 'cbv') {
             explanation =
                 'A type of vector done by tilting the joystick ~40 degrees left or right after doing a cap bounce.';
-        } else explanation = 'placeholder';
+        } else if (tech === 'mcct') {
+            explanation =
+                'A cap throw done with motion controls.';
+        } else if (tech === 'rc') {
+            explanation =
+                `A way to transfer Mario's speed from a roll by tapping X, Y and B in quick succession.`;
+        } else if (tech === 'mooncip') {
+            explanation =
+                'A type of out-of-bounds clip done by jumping and cap throwing against the wall, pushing Mario inside it. Can be done with a backflip, sideflip, triple jump or 2P cap bounce.';
+        };
 
         let techEmbed = new EmbedBuilder()
             .setTitle(techName)
