@@ -25,7 +25,7 @@ const commands = [
                     },
                     {
                         name: 'Moon Clip',
-                        value: 'moonclip',
+                        value: 'moon clip',
                     },
                     {
                         name: 'Roll Cancel',
