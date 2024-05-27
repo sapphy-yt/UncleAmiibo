@@ -23,10 +23,11 @@ module.exports = {
         }
 
         let techEmbed = new EmbedBuilder()
+            .setAuthor('Technique Explanation')
             .setTitle(techName)
             .setDescription(techExplanation)
             .addFields(
-                { name: '**Abbreviation**', value: tech }
+                { name: 'Abbreviation', value: tech }
             )
             .setColor(0x3498db);
 
