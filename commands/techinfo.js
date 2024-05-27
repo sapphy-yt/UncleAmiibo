@@ -20,7 +20,7 @@ module.exports = {
 
         if (tech == "moon clip") {
             tech = "No Abbreviation"
-        }
+        };
 
         let techEmbed = new EmbedBuilder()
             .setTitle(techName)
