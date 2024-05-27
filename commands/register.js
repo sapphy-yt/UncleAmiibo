@@ -31,6 +31,10 @@ const commands = [
                         name: 'Roll Cancel',
                         value: 'rc',
                     },
+                    {
+                        name: 'Triple Throw',
+                        value: 'tt',
+                    },
                 ],
                 required: true,
             }
