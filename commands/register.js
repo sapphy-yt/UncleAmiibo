@@ -14,32 +14,44 @@ const commands = [
                 name: 'technique',
                 description: 'the technique you want info about',
                 type: ApplicationCommandOptionType.String,
-                choices: [
-                    {
-                        name: 'Cap Bounce Vector',
-                        value: 'cbv',
-                    },
-                    {
-                        name: 'Motion Control Cap Throw',
-                        value: 'mcct',
-                    },
-                    {
-                        name: 'Moon Clip',
-                        value: 'moon clip',
-                    },
-                    {
-                        name: 'Roll Cancel',
-                        value: 'rc',
-                    },
-                    {
-                        name: 'Triple Throw',
-                        value: 'tt',
-                    },
-                ],
                 required: true,
             }
         ],
     },
+    {
+        name: 'techupdate',
+        description: 'allows updating and adding of commands for techinfo',
+        options: [
+            {
+                name: 'abbreviation',
+                description: 'the abbreviation you want to add or edit (put the name of the technique if it has none)',
+                type: ApplicationCommandOptionType.String,
+                required: true
+            },
+            {
+                name: 'technique',
+                description: 'the full name of the technique',
+                type: ApplicationCommandOptionType.String,
+                required: false 
+            },
+            {
+                name: 'description',
+                description: 'the description of the technique',
+                type: ApplicationCommandOptionType.String,
+                required: false
+            },
+            {
+                name: 'hasabbreviation',
+                description: 'Werther the Technique has an abbreviation, relevant for Moon Clip',
+                type: ApplicationCommandOptionType.Boolean,
+                required: false
+            }
+        ]
+    },
+    {
+        name: 'techall',
+        description: 'shows all techniques currently saved in the bot'
+    }
 ];
 
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);

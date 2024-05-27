@@ -27,10 +27,39 @@ client.once('ready', () => {
 
 client.on('interactionCreate', (interaction) => {
     if (interaction.commandName === 'ping') {
+
         interaction.reply('pong');
+
     } else if (interaction.commandName === 'techinfo') {
+
         client.commands.get('techinfo').execute(interaction);
-    };
+
+    } else if (interaction.commandName === 'techupdate'){
+        
+        const allowedRoles = ['1244729048987603035', '1243650269900705882']; //1st is Amiibo Helper, 2nd Supreme Overlords
+        const memberRoles = interaction.member.roles.cache;
+        const hasRole = allowedRoles.some(role => memberRoles.has(role))
+
+        if (hasRole){
+        
+            console.log("at techupdate")
+            client.commands.get('techupdate').execute(interaction);
+
+        } else {
+            let imageID = Math.floor(Math.random() * 2)
+            let imageURI = null
+            switch(imageID){
+                case 0:  imageURI = './data/no_perms.gif'; break;
+                case 1:  imageURI = './data/no_perms.jpg'; break 
+            }
+            interaction.reply({files: [{attachment: imageURI}]})
+        }
+
+    } else if (interaction.commandName === 'techall'){
+
+        client.commands.get('techall').execute(interaction);
+
+    }
 });
 
 client.login(process.env.TOKEN);
