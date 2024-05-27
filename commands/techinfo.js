@@ -13,12 +13,14 @@ module.exports = {
 
         let techExplanation = techFull ? techFull.description : null;
 
-        if (techName == null || techExplanation == null) { //Error Handling
+        let techHasAbbreviation = techFull ? techFull.hasAbbreviation : null;
+
+        if (techName == null || techExplanation == null || techHasAbbreviation == null) { //Error Handling
             techName = "Technique not found"
             techExplanation = "-"
         };
 
-        if (tech == "moon clip") {
+        if (techHasAbbreviation === false) {
             tech = "No Abbreviation"
         };
 
