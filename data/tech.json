@@ -1,0 +1,12 @@
+[
+    {
+        "abbreviation": "cbv",
+        "name": "Cap Bounce Vector",
+        "description": "A type of vector done by tilting the joystick ~40 degrees left or right after doing a cap bounce."
+    },
+    {
+        "abbreviation": "rcc",
+        "name": "Roll Cancel Clip",
+        "description": "A way to clip through certain walls by cancelling a roll close to it"    
+    }
+]
