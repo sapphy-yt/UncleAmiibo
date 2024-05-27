@@ -23,7 +23,6 @@ module.exports = {
         }
 
         let techEmbed = new EmbedBuilder()
-            .setAuthor('Technique Explanation')
             .setTitle(techName)
             .setDescription(techExplanation)
             .addFields(
