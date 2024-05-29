@@ -26,7 +26,9 @@ client.once('ready', () => {
 });
 
 client.on('interactionCreate', (interaction) => {
-           if (interaction.commandName === 'ping') {
+    if (!interaction.isCommand()) return;
+
+    if (interaction.commandName === 'ping') {
 
         interaction.reply('pong');
 
@@ -57,6 +59,22 @@ client.on('interactionCreate', (interaction) => {
 
     } else if (interaction.commandName === 'techall') {
         client.commands.get('techall').execute(interaction);
+    } else if (interaction.commandName === 'play') {
+
+        client.commands.get('play').execute(client, interaction);
+
+    } else if (interaction.commandName === 'skip') {
+
+        client.commands.get('skip').execute(client, interaction);
+
+    } else if (interaction.commandName === 'resume') {
+        client.commands.get('resume').execute(client, interaction);
+    } else if (interaction.commandName === 'pause') {
+        client.commands.get('pause').execute(client, interaction);
+    } else if (interaction.commandName === 'queue') {
+        client.commands.get('queue').execute(client, interaction);
+    } else if (interaction.commandName === 'exit') {
+        client.commands.get('exit').execute(client, interaction);
     }
 });
 
@@ -66,7 +84,5 @@ client.player = new Player(client, {
         highWaterMark: 1 << 25
     }
 });
-
-
 
 client.login(process.env.TOKEN);

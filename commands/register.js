@@ -32,7 +32,7 @@ const commands = [
                 name: 'technique',
                 description: 'the full name of the technique',
                 type: ApplicationCommandOptionType.String,
-                required: false 
+                required: false
             },
             {
                 name: 'description',
@@ -51,6 +51,38 @@ const commands = [
     {
         name: 'techall',
         description: 'shows all techniques currently saved in the bot'
+    },
+    {
+        name: 'play',
+        description: 'puts a song in the music queue',
+        options: [
+            {
+                name: 'song_link',
+                description: 'the song you want to play',
+                type: ApplicationCommandOptionType.String,
+                required: true,
+            }
+        ],
+    },
+    {
+        name: 'exit',
+        description: 'makes the bot exit the music channel'
+    },
+    {
+        name: 'pause',
+        description: 'pauses the music'
+    },
+    {
+        name: 'queue',
+        description: 'views the song queue'
+    },
+    {
+        name: 'resume',
+        description: 'resumes the music'
+    },
+    {
+        name: 'skip',
+        description: 'skips the current song'
     }
 ];
 
@@ -65,7 +97,8 @@ const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
             await rest.put(
                 Routes.applicationGuildCommands(process.env.CLIENT_ID, guildID),
                 { body: commands }
-            )
+            );
+            console.log(`refreshed commands in ${guildID}`)
         }
         console.log('done');
     } catch (error) {
