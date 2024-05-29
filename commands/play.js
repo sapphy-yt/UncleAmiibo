@@ -1,16 +1,11 @@
-const { QueryType } = require('discord-player');
+const { QueryType, Player } = require('discord-player');
 const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'play',
 
     execute: async ({ client, interaction }) => {
-        if (!interaction.member.voice.channel) {
-            await interaction.reply('maybe get your ass in vc bucko');
-            return;
-        }
-
-        let queue = await client.player.queues.create(interaction.guild);
+        let queue = await client.player.createQueue(interaction.guild);
 
         if (!queue.connection) await queue.connect(interaction.member.voice.channel);
 
