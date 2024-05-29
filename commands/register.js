@@ -54,17 +54,19 @@ const commands = [
     }
 ];
 
+const guilds = client.guilds.cache.map(guild => guild.id);
 const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 (async () => {
     try {
         console.log('registering commands');
 
-        await rest.put(
-            Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
-            { body: commands }
-        )
-
+        for (let guildID of guilds) {
+            await rest.put(
+                Routes.applicationGuildCommands(process.env.CLIENT_ID, guildID),
+                { body: commands }
+            )
+        }
         console.log('done');
     } catch (error) {
         console.log('oopsie i fucked up :3');
