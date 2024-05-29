@@ -13,13 +13,6 @@ const client = new Client({
     ],
 });
 
-client.player = new Player(client, {
-    ytdlOptions: {
-        quality: 'highestaudio',
-        highWaterMark: 1 << 25
-    }
-});
-
 client.commands = new Collection();
 
 const cmdFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));

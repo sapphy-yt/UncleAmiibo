@@ -5,6 +5,13 @@ module.exports = {
     name: 'play',
 
     execute: async ({ client, interaction }) => {
+        client.player = new Player(client, {
+            ytdlOptions: {
+                quality: 'highestaudio',
+                highWaterMark: 1 << 25
+            }
+        });        
+
         let queue = await client.player.createQueue(interaction.guild);
 
         if (!queue.connection) await queue.connect(interaction.member.voice.channel);
