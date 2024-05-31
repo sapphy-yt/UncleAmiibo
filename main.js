@@ -1,5 +1,5 @@
-const { Player } = require('discord-player');
-const { Client, IntentsBitField, Collection } = require('discord.js');
+const { Player, QueryType } = require('discord-player');
+const { Client, IntentsBitField, Collection, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 require('dotenv').config();
 
@@ -24,6 +24,13 @@ for (let file of cmdFiles) {
 
 client.once('ready', () => {
     console.log("hai :3");
+});
+
+client.player = new Player(client, {
+    ytdlOptions: {
+        quality: 'highestaudio',
+        highWaterMark: 1 << 25
+    }
 });
 
 client.on('interactionCreate', (interaction) => {
@@ -53,10 +60,43 @@ client.on('interactionCreate', (interaction) => {
     } else if (interaction.commandName === 'techall') {
         client.commands.get('techall').execute(interaction);
     } else if (interaction.commandName === 'play') {
+        // if it aint broke dont fix it
+
         let user = client.guilds.cache.get('1243643481247715458').members.cache.get(interaction.member.id);
 
-        if (user.voice.channel) { 
-            client.commands.get('play').execute(client, interaction);
+        if (user.voice.channel) {
+            let queue = client.player.queues.create(interaction.guild);
+
+            if (!queue.connection) queue.connect(interaction.member.voice.channel);
+
+            const url = interaction.options.getString('song_link');
+            const result = client.player.search(url, {
+                requestedBy: interaction.user,
+                searchEngine: QueryType.YOUTUBE_SEARCH,
+            });
+
+            if (result.tracks === undefined) {
+                interaction.reply('wtf');
+                return;
+            }
+
+            const song = result.tracks[0]
+            queue.addTrack(song);
+
+            let goofyGreyBox = new EmbedBuilder()
+                .setTitle('Song Added to Queue')
+                .setDescription(`**[${song.title}](${song.url})**`)
+                .setThumbnail(song.thumbnail)
+                .addFields(
+                    {
+                        name: 'Duration',
+                        value: `${song.duration}`
+                    }
+                )
+                .setColor(0x3498db);
+
+            interaction.reply({ embeds: [goofyGreyBox] });
+
         } else {
             interaction.reply('maybe get your ass in vc bucko');
             return;

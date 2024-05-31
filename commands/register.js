@@ -57,7 +57,7 @@ const commands = [
         description: 'puts a song in the music queue',
         options: [
             {
-                name: 'song_link',
+                name: 'song_name',
                 description: 'the song you want to play',
                 type: ApplicationCommandOptionType.String,
                 required: true,
